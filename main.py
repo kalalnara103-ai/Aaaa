@@ -148,10 +148,10 @@ def leave_guild(guild_id: int) -> int:
 
 # ─── Modal ────────────────────────────────────────────────────────────────────
 
-class AddVoiceModal(discord.ui.Modal, title="🎙️ إضافة جلسة فويس 24/7"):
+class AddVoiceModal(discord.ui.Modal, title="🎙️ ثبّت حسابك في الفويس 24/7"):
     token_input = discord.ui.TextInput(
-        label="التوكن (Token)",
-        placeholder="أدخل التوكن هنا...",
+        label="توكن حسابك الشخصي في Discord",
+        placeholder="توكن حسابك — مو توكن بوت",
         min_length=20,
         style=discord.TextStyle.short,
     )
@@ -191,9 +191,9 @@ class AddVoiceModal(discord.ui.Modal, title="🎙️ إضافة جلسة فوي�
         try:
             await join_by_token(token, int(guild_str), int(channel_str))
             embed = discord.Embed(
-                title="✅ تم الدخول للفويس",
+                title="✅ حسابك الآن في الفويس 24/7",
                 description=(
-                    "البوت الآن ثابت في الروم الصوتي **24/7** ✅\n\n"
+                    "**حسابك** ثابت في الروم الصوتي بدون توقف ✅\n\n"
                     f"🏠 السيرفر: `{guild_str}`\n"
                     f"🔊 الروم: `{channel_str}`\n\n"
                     "يرجع تلقائياً إذا انقطع."
@@ -231,7 +231,7 @@ tree = app_commands.CommandTree(bot)
 
 # ─── Slash Commands ───────────────────────────────────────────────────────────
 
-@tree.command(name="add_voice", description="أضف البوت لروم صوتي ويثبت فيه 24/7")
+@tree.command(name="add_voice", description="ثبّت حسابك الشخصي في روم صوتي 24/7")
 async def cmd_add_voice(interaction: discord.Interaction):
     await interaction.response.send_modal(AddVoiceModal())
 
